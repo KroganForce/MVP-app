@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exampleapp.testapp.Note;
+import com.exampleapp.testapp.entity.Note;
 import com.exampleapp.testapp.R;
 
 public class NoteHolder extends RecyclerView.ViewHolder {

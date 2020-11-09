@@ -2,23 +2,26 @@ package com.exampleapp.testapp;
 
 import androidx.lifecycle.LifecycleOwner;
 
-public class NotePresenter {
+public class HomePresenter implements BasePresenter<ShowNotesContract> {
 
-    private UiContract mView;
+    private ShowNotesContract mView;
     private final NoteRepository mNoteRepository;
 
-    public NotePresenter(NoteRepository repository) {
+    public HomePresenter(NoteRepository repository) {
         mNoteRepository = repository;
     }
 
-    public void attachView(UiContract uiContract) {
-        mView = uiContract;
+    @Override
+    public void attachView(ShowNotesContract contract) {
+        mView = contract;
     }
 
+    @Override
     public void detachView() {
         mView = null;
     }
 
+    @Override
     public void viewIsReady() {
         loadNotes();
     }

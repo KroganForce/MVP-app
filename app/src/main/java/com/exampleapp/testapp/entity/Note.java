@@ -1,4 +1,4 @@
-package com.exampleapp.testapp;
+package com.exampleapp.testapp.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Note {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
 

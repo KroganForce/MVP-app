@@ -5,7 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.exampleapp.testapp.Note;
+import com.exampleapp.testapp.entity.Note;
 
 import java.util.List;
 

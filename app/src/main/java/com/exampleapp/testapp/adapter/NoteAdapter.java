@@ -5,10 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exampleapp.testapp.Note;
+import com.exampleapp.testapp.entity.Note;
 import com.exampleapp.testapp.R;
 
 import java.util.ArrayList;

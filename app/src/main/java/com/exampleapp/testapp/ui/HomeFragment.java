@@ -12,21 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.exampleapp.testapp.Note;
-import com.exampleapp.testapp.NotePresenter;
+import com.exampleapp.testapp.entity.Note;
+import com.exampleapp.testapp.HomePresenter;
 import com.exampleapp.testapp.NoteRepository;
 import com.exampleapp.testapp.R;
-import com.exampleapp.testapp.UiContract;
+import com.exampleapp.testapp.ShowNotesContract;
 import com.exampleapp.testapp.adapter.NoteAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class HomeFragment extends Fragment implements UiContract {
+public class HomeFragment extends Fragment implements ShowNotesContract {
 
     private NoteAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private NoteAdapter.ItemClickListener mItemClickListenerCallback;
-    private NotePresenter mPresenter;
+    private HomePresenter mPresenter;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -51,15 +52,21 @@ public class HomeFragment extends Fragment implements UiContract {
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-
         mAdapter = new NoteAdapter(mItemClickListenerCallback);
         mRecyclerView.setAdapter(mAdapter);
 
-        mPresenter = new NotePresenter(new NoteRepository());
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.float_action_button);
+        floatingActionButton.setOnClickListener(buttonView -> floatButtonPush());
+
+        mPresenter = new HomePresenter(new NoteRepository());
         mPresenter.attachView(this);
         mPresenter.viewIsReady();
 
         return view;
+    }
+
+    private void floatButtonPush() {
+        mItemClickListenerCallback.showDetailFragment(-1);
     }
 
     @Override

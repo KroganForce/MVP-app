@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.ItemC
 
     @Override
     public void showDetailFragment(int id) {
-        DetailFragment fragmentDialog = DetailFragment.newInstance("DETAIL", "FRAGMENT");
+        DetailFragment fragmentDialog = DetailFragment.newInstance(id);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragmentDialog)
                 .addToBackStack(null)
