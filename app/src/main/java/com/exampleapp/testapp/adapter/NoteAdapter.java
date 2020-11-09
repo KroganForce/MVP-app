@@ -40,13 +40,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
     }
 
     public void upDateList(List<Note> newList) {
-
-     /*   DiffUtil.DiffResult diffResult =
-                DiffUtil.calculateDiff(new DiffUtilCallback(this.mAllDataList, newList));*/
         mList.clear();
         mList.addAll(newList);
         notifyDataSetChanged();
-        //   diffResult.dispatchUpdatesTo(this);
     }
 
     public interface ItemClickListener {

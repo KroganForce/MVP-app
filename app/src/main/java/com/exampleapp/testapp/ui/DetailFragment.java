@@ -1,17 +1,15 @@
 package com.exampleapp.testapp.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.fragment.app.Fragment;
+
 import com.exampleapp.testapp.ActionsContract;
 import com.exampleapp.testapp.DetailPresenter;
-import com.exampleapp.testapp.HomePresenter;
 import com.exampleapp.testapp.NoteRepository;
 import com.exampleapp.testapp.R;
 import com.exampleapp.testapp.entity.Note;
@@ -22,6 +20,7 @@ public class DetailFragment extends Fragment implements ActionsContract {
 
     private DetailPresenter mPresenter;
     private EditText mEditText;
+    private int mId;
 
     public static DetailFragment newInstance(int id) {
         DetailFragment fragment = new DetailFragment();
@@ -34,8 +33,10 @@ public class DetailFragment extends Fragment implements ActionsContract {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            mId = arguments.getInt(String.valueOf(Constants.NOTE_ID));
         }
     }
 
@@ -52,6 +53,7 @@ public class DetailFragment extends Fragment implements ActionsContract {
         mPresenter.attachView(this);
         mPresenter.viewIsReady();
 
+        mEditText.setText(mPresenter.noteData());
         return view;
     }
 
@@ -60,5 +62,10 @@ public class DetailFragment extends Fragment implements ActionsContract {
         Note note = new Note();
         note.setNote(mEditText.getText().toString());
         return note;
+    }
+
+    @Override
+    public int getNoteId() {
+        return mId;
     }
 }

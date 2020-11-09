@@ -26,4 +26,8 @@ public class DetailPresenter implements BasePresenter<ActionsContract> {
     public void add() {
         mNoteRepository.addNote(mView.getNoteData());
     }
+
+    public String noteData() {
+        return mNoteRepository.getDataById(mView.getNoteId());
+    }
 }

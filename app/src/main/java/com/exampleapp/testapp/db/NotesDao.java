@@ -18,4 +18,6 @@ public interface NotesDao {
     @Query("SELECT * FROM NOTE")
     LiveData<List<Note>> getData();
 
+    @Query("SELECT note FROM NOTE WHERE id = :id")
+    String getDataById(int id);
 }

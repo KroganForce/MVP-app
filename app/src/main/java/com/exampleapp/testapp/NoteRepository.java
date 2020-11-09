@@ -7,8 +7,11 @@ import com.exampleapp.testapp.entity.Note;
 import com.exampleapp.testapp.utils.AppInit;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class NoteRepository {
@@ -29,6 +32,23 @@ public class NoteRepository {
             executor.awaitTermination(3, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    public String getDataById(int id) {
+
+        Callable<String> task = (() -> dao.getDataById(id));
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(task);
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(3, TimeUnit.SECONDS);
+            return future.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
