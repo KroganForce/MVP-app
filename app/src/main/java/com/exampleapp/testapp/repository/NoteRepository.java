@@ -1,4 +1,4 @@
-package com.exampleapp.testapp;
+package com.exampleapp.testapp.repository;
 
 import androidx.lifecycle.LiveData;
 
@@ -35,6 +35,18 @@ public class NoteRepository {
         }
     }
 
+    public void updateNote(Note note) {
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> dao.update(note));
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(3, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String getDataById(int id) {
 
@@ -49,6 +61,19 @@ public class NoteRepository {
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void deleteNote(int id) {
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> dao.deleteNote(id));
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(3, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

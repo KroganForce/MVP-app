@@ -22,7 +22,7 @@
         android:layout_margin="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/fragment_description"
         android:src="@drawable/float_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

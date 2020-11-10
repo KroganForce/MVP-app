@@ -1,10 +1,13 @@
-package com.exampleapp.testapp;
+package com.exampleapp.testapp.presenter;
 
 import androidx.lifecycle.LifecycleOwner;
 
-public class HomePresenter implements BasePresenter<ShowNotesContract> {
+import com.exampleapp.testapp.repository.NoteRepository;
+import com.exampleapp.testapp.contract.HomeContract;
 
-    private ShowNotesContract mView;
+public class HomePresenter implements BasePresenter<HomeContract> {
+
+    private HomeContract mView;
     private final NoteRepository mNoteRepository;
 
     public HomePresenter(NoteRepository repository) {
@@ -12,7 +15,7 @@ public class HomePresenter implements BasePresenter<ShowNotesContract> {
     }
 
     @Override
-    public void attachView(ShowNotesContract contract) {
+    public void attachView(HomeContract contract) {
         mView = contract;
     }
 
@@ -21,12 +24,14 @@ public class HomePresenter implements BasePresenter<ShowNotesContract> {
         mView = null;
     }
 
-    @Override
     public void viewIsReady() {
         loadNotes();
     }
 
     public void loadNotes() {
         mNoteRepository.getAll().observe((LifecycleOwner) mView, list -> mView.showData(list));
+    }
+    public void deleteNote(int id){
+        mNoteRepository.deleteNote(id);
     }
 }

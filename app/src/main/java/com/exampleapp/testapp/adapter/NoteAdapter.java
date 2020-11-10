@@ -5,21 +5,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.exampleapp.testapp.entity.Note;
 import com.exampleapp.testapp.R;
+import com.exampleapp.testapp.utils.DiffUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 
-    private final ItemClickListener mItemClickListener;
+    private final NoteClickListener mNoteClickListener;
     private final List<Note> mList = new ArrayList<>();
 
-    public NoteAdapter(ItemClickListener listener) {
-        mItemClickListener = listener;
+    public NoteAdapter(NoteClickListener listener) {
+        mNoteClickListener = listener;
     }
 
     @NonNull
@@ -31,7 +33,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
-        holder.bind(mItemClickListener, mList.get(position));
+        holder.bind(mNoteClickListener, mList.get(position));
     }
 
     @Override
@@ -40,12 +42,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
     }
 
     public void upDateList(List<Note> newList) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtility(mList, newList));
         mList.clear();
         mList.addAll(newList);
-        notifyDataSetChanged();
+        diffResult.dispatchUpdatesTo(this);
     }
 
-    public interface ItemClickListener {
-        void showDetailFragment(int id);
+    public interface NoteClickListener {
+        void click(int id);
+        void deleteItem(int id);
     }
 }

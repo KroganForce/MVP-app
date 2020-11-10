@@ -1,10 +1,10 @@
-package com.exampleapp.testapp;
+package com.exampleapp.testapp.contract;
 
 import com.exampleapp.testapp.entity.Note;
 
 import java.util.List;
 
-public interface ShowNotesContract {
+public interface HomeContract {
 
     void showData(List<Note> list);
 }
