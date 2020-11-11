@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.exampleapp.testapp.R;
-import com.exampleapp.testapp.adapter.NoteAdapter;
 import com.exampleapp.testapp.utils.Constants;
 
 public class MainActivity extends AppCompatActivity implements DetailFragment.FloatButtonClickListener, HomeFragment.InitFragment {
@@ -29,23 +28,13 @@ public class MainActivity extends AppCompatActivity implements DetailFragment.Fl
                 .commit();
     }
 
-   /* @Override
-    public void showDetailFragment(int id) {
-        DetailFragment fragmentDialog = DetailFragment.newInstance(id);
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, fragmentDialog)
-                .addToBackStack(String.valueOf(Constants.DETAIL_FRAGMENT))
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
-    }*/
-
     @Override
     public void buttonClick() {
         mFragmentManager.popBackStack();
     }
 
     @Override
-    public void initFragment(int id) {
+    public void showHomeFragment(int id) {
         DetailFragment fragmentDialog = DetailFragment.newInstance(id);
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragmentDialog)

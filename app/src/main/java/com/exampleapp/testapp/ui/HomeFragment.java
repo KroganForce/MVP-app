@@ -25,20 +25,11 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
 
     private NoteAdapter mAdapter;
     private HomePresenter mPresenter;
-    private InitFragment initFragment;
+    private InitFragment mInitFragmentListener;
 
-    @Override
-    public void click(int id) {
-        initFragment.initFragment(id);
-    }
-
-    @Override
-    public void deleteItem(int id) {
-        mPresenter.deleteNote(id);
-    }
 
     interface InitFragment {
-        void initFragment(int id);
+        void showHomeFragment(int id);
     }
 
     public static HomeFragment newInstance() {
@@ -50,7 +41,7 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
         super.onAttach(context);
 
         if (context instanceof InitFragment) {
-            initFragment = (InitFragment) context;
+            mInitFragmentListener = (InitFragment) context;
         }
     }
 
@@ -92,12 +83,22 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
     }
 
     private void floatButtonPush() {
-        initFragment.initFragment(-1);
+        mInitFragmentListener.showHomeFragment(-1);
     }
 
     @Override
-    public void showData(List<Note> list) {
+    public void getData(List<Note> list) {
         mAdapter.upDateList(list);
+    }
+
+    @Override
+    public void clickOnNote(int id) {
+        mInitFragmentListener.showHomeFragment(id);
+    }
+
+    @Override
+    public void deleteItem(int id) {
+        mPresenter.deleteNote(id);
     }
 
     @Override

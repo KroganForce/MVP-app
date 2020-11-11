@@ -29,7 +29,7 @@ public class HomePresenter implements BasePresenter<HomeContract> {
     }
 
     public void loadNotes() {
-        mNoteRepository.getAll().observe((LifecycleOwner) mView, list -> mView.showData(list));
+        mNoteRepository.getAll().observe((LifecycleOwner) mView, list -> mView.getData(list));
     }
     public void deleteNote(int id){
         mNoteRepository.deleteNote(id);
