@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
 
 
     interface InitFragment {
-        void showHomeFragment(int id);
+        void showDetailFragment(int id);
     }
 
     public static HomeFragment newInstance() {
@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
     }
 
     private void floatButtonPush() {
-        mInitFragmentListener.showHomeFragment(-1);
+        mInitFragmentListener.showDetailFragment(-1);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
 
     @Override
     public void clickOnNote(int id) {
-        mInitFragmentListener.showHomeFragment(id);
+        mInitFragmentListener.showDetailFragment(id);
     }
 
     @Override
@@ -104,6 +104,7 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.detachView();
+        if (mPresenter != null)
+            mPresenter.detachView();
     }
 }

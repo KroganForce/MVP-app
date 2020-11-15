@@ -3,6 +3,7 @@ package com.exampleapp.testapp.ui;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,11 +22,13 @@ public class MainActivity extends AppCompatActivity implements DetailFragment.Fl
     }
 
     private void showHomeFragment() {
-        HomeFragment homeFragment = HomeFragment.newInstance();
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, homeFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
+        Fragment fragment = mFragmentManager.findFragmentById(R.id.fragment_container);
+        if (fragment == null) {
+            fragment = HomeFragment.newInstance();
+            mFragmentManager.beginTransaction()
+                    .add(R.id.fragment_container, fragment)
+                    .commit();
+        }
     }
 
     @Override
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements DetailFragment.Fl
     }
 
     @Override
-    public void showHomeFragment(int id) {
+    public void showDetailFragment(int id) {
         DetailFragment fragmentDialog = DetailFragment.newInstance(id);
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragmentDialog)

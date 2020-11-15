@@ -79,6 +79,13 @@ public class DetailFragment extends Fragment implements DetailContract {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null)
+            mPresenter.detachView();
+    }
+
+    @Override
     public String getNoteData() {
         return mEditText.getText().toString();
     }
