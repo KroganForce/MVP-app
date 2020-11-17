@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements DetailFragment.Fl
         if (fragment == null) {
             fragment = HomeFragment.newInstance();
             mFragmentManager.beginTransaction()
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .add(R.id.fragment_container, fragment)
                     .commit();
         }

@@ -64,7 +64,6 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
     }
 
     private void initRecyclerView(View view) {
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 
@@ -76,7 +75,6 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
     }
 
     private void initPresenter() {
-
         mPresenter = new HomePresenter(new NoteRepository());
         mPresenter.attachView(this);
         mPresenter.viewIsReady();

@@ -29,7 +29,7 @@ public abstract class NotesDatabase extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-                        db.execSQL("INSERT INTO NOTE(id,note) VALUES (123,'HELLO! THIS IS NOTE!')");
+                        db.execSQL("INSERT INTO NOTE(id,note) VALUES (123,'NOTE 1'),(124,'NOTE 2')");
                     }
                 }).build();
     }

@@ -23,7 +23,6 @@ public class NoteRepository {
     }
 
     public void addNote(Note item) {
-
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> dao.insert(item));
         executor.shutdown();
@@ -36,7 +35,6 @@ public class NoteRepository {
     }
 
     public void updateNote(Note note) {
-
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> dao.update(note));
         executor.shutdown();
@@ -49,7 +47,6 @@ public class NoteRepository {
     }
 
     public String getDataById(int id) {
-
         Callable<String> task = (() -> dao.getDataById(id));
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<String> future = executor.submit(task);
@@ -65,7 +62,6 @@ public class NoteRepository {
     }
 
     public void deleteNote(int id) {
-
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> dao.deleteNote(id));
         executor.shutdown();

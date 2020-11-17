@@ -74,7 +74,7 @@ public class DetailFragment extends Fragment implements DetailContract {
         mPresenter.attachView(this);
 
         mEditText = view.findViewById(R.id.edit_text_view);
-        mEditText.setText(mPresenter.noteData());
+        mEditText.setText(mPresenter.getNoteData());
         return view;
     }
 
