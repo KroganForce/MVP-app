@@ -8,22 +8,21 @@ import com.exampleapp.testapp.di.NoteComponent;
 
 public class AppInit extends Application {
     private static NotesDatabase db;
-    private static NoteComponent mComponent;
+    private static NoteComponent mNoteComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        db = NotesDatabase.getInstance(this);
 
-        mComponent = DaggerNoteComponent.create();
+        db = NotesDatabase.getInstance(this);
+        mNoteComponent = DaggerNoteComponent.create();
     }
 
     static public NotesDatabase getDb() {
         return db;
     }
 
-    public static NoteComponent getComponent() {
-        return mComponent;
+    public static NoteComponent getNoteComponent() {
+        return mNoteComponent;
     }
-
 }

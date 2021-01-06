@@ -16,7 +16,6 @@ import com.exampleapp.testapp.adapter.NoteAdapter;
 import com.exampleapp.testapp.contract.HomeContract;
 import com.exampleapp.testapp.entity.Note;
 import com.exampleapp.testapp.presenter.HomePresenter;
-import com.exampleapp.testapp.repository.NoteRepository;
 import com.exampleapp.testapp.utils.AppInit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,9 +26,8 @@ import javax.inject.Inject;
 public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.NoteClickListener {
 
     @Inject
-    NoteRepository mRepository;
+    HomePresenter mPresenter;
     private NoteAdapter mAdapter;
-    private HomePresenter mPresenter;
     private InitFragment mInitFragmentListener;
 
     interface InitFragment {
@@ -61,7 +59,7 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
         FloatingActionButton floatingActionButton = view.findViewById(R.id.float_action_button);
         floatingActionButton.setOnClickListener(buttonView -> floatButtonPush());
 
-        AppInit.getComponent().inject(this);
+        AppInit.getNoteComponent().inject(this);
 
         initRecyclerView(view);
         initPresenter();
@@ -81,7 +79,6 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
     }
 
     private void initPresenter() {
-        mPresenter = new HomePresenter(mRepository);
         mPresenter.attachView(this);
         mPresenter.viewIsReady();
     }
