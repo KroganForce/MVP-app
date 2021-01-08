@@ -41,9 +41,8 @@ public class DetailFragment extends Fragment implements DetailContract {
 
     @Override
     public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
         ((MainActivity) getActivity()).mainSubComponent.inject(this);
+        super.onAttach(context);
 
         if (context instanceof FloatButtonClickListener)
             mListener = (FloatButtonClickListener) context;

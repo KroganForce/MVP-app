@@ -39,8 +39,8 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
 
     @Override
     public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
         ((MainActivity) getActivity()).mainSubComponent.inject(this);
+        super.onAttach(context);
         if (context instanceof InitFragment) {
             mInitFragmentListener = (InitFragment) context;
         }

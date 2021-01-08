@@ -20,10 +20,11 @@ public class MainActivity extends AppCompatActivity implements DetailFragment.Fl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         mainSubComponent = AppInit.getNoteComponent().mainComponent().create();
         mainSubComponent.inject(this);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         showHomeFragment();
     }
