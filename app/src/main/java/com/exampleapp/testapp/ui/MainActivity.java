@@ -8,16 +8,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.exampleapp.testapp.R;
+import com.exampleapp.testapp.di.MainSubComponent;
+import com.exampleapp.testapp.utils.AppInit;
 import com.exampleapp.testapp.utils.Constants;
 
 public class MainActivity extends AppCompatActivity implements DetailFragment.FloatButtonClickListener, HomeFragment.InitFragment {
 
     private final FragmentManager mFragmentManager = getSupportFragmentManager();
 
+    MainSubComponent mainSubComponent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainSubComponent = AppInit.getNoteComponent().mainComponent().create();
+        mainSubComponent.inject(this);
+
         showHomeFragment();
     }
 

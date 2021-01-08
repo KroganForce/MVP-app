@@ -14,7 +14,6 @@ import com.exampleapp.testapp.R;
 import com.exampleapp.testapp.contract.DetailContract;
 import com.exampleapp.testapp.presenter.DetailPresenter;
 import com.exampleapp.testapp.repository.NoteRepository;
-import com.exampleapp.testapp.utils.AppInit;
 import com.exampleapp.testapp.utils.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -43,6 +42,9 @@ public class DetailFragment extends Fragment implements DetailContract {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+
+        ((MainActivity) getActivity()).mainSubComponent.inject(this);
+
         if (context instanceof FloatButtonClickListener)
             mListener = (FloatButtonClickListener) context;
         else
@@ -72,8 +74,6 @@ public class DetailFragment extends Fragment implements DetailContract {
 
             mListener.buttonClick();
         });
-
-        AppInit.getNoteComponent().inject(this);
 
         mPresenter = new DetailPresenter(new NoteRepository());
         mPresenter.attachView(this);
