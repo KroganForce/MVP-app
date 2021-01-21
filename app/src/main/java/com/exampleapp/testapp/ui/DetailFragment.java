@@ -17,11 +17,9 @@ import com.exampleapp.testapp.repository.NoteRepository;
 import com.exampleapp.testapp.utils.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import javax.inject.Inject;
-
 public class DetailFragment extends Fragment implements DetailContract {
 
-    @Inject
+   // @Inject
     DetailPresenter mPresenter;
     private EditText mEditText;
     private int mId;
@@ -41,7 +39,7 @@ public class DetailFragment extends Fragment implements DetailContract {
 
     @Override
     public void onAttach(@NonNull Context context) {
-        ((MainActivity) getActivity()).mainSubComponent.inject(this);
+
         super.onAttach(context);
 
         if (context instanceof FloatButtonClickListener)
