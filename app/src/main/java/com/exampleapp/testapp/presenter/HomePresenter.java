@@ -2,14 +2,18 @@ package com.exampleapp.testapp.presenter;
 
 import androidx.lifecycle.LifecycleOwner;
 
-import com.exampleapp.testapp.repository.NoteRepository;
 import com.exampleapp.testapp.contract.HomeContract;
+import com.exampleapp.testapp.repository.NoteRepository;
+
+import javax.inject.Inject;
 
 public class HomePresenter implements BasePresenter<HomeContract> {
 
-    private HomeContract mView;
-    private final NoteRepository mNoteRepository;
+    @Inject
+    public HomeContract mView;
+    public final NoteRepository mNoteRepository;
 
+    @Inject
     public HomePresenter(NoteRepository repository) {
         mNoteRepository = repository;
     }

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +21,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.NoteClickListener {
+import dagger.android.HasAndroidInjector;
+
+public class HomeFragment extends BaseFragment implements HomeContract, NoteAdapter.NoteClickListener, HasAndroidInjector {
 
     @Inject
     HomePresenter mPresenter;
@@ -39,7 +40,6 @@ public class HomeFragment extends Fragment implements HomeContract, NoteAdapter.
 
     @Override
     public void onAttach(@NonNull Context context) {
-        ((MainActivity) getActivity()).mainSubComponent.inject(this);
         super.onAttach(context);
         if (context instanceof InitFragment) {
             mInitFragmentListener = (InitFragment) context;

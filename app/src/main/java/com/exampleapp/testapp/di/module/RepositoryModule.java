@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class NoteRepositoryModule {
+public class RepositoryModule {
 
     @Provides
     NoteRepository provideRepository() {
