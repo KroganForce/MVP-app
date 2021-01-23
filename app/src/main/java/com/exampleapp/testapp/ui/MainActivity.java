@@ -2,7 +2,6 @@ package com.exampleapp.testapp.ui;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.exampleapp.testapp.R;
 import com.exampleapp.testapp.utils.Constants;
 
-public class MainActivity extends AppCompatActivity implements DetailFragment.FloatButtonClickListener, HomeFragment.InitFragment {
+public class MainActivity extends BaseActivity implements DetailFragment.FloatButtonClickListener, HomeFragment.InitFragment {
 
     private final FragmentManager mFragmentManager = getSupportFragmentManager();
 
