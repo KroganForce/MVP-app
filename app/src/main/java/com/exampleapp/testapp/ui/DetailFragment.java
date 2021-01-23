@@ -8,18 +8,20 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import com.exampleapp.testapp.R;
 import com.exampleapp.testapp.contract.DetailContract;
 import com.exampleapp.testapp.presenter.DetailPresenter;
-import com.exampleapp.testapp.repository.NoteRepository;
 import com.exampleapp.testapp.utils.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class DetailFragment extends Fragment implements DetailContract {
+import javax.inject.Inject;
 
-   // @Inject
+import dagger.android.HasAndroidInjector;
+
+public class DetailFragment extends BaseFragment implements DetailContract, HasAndroidInjector {
+
+    @Inject
     DetailPresenter mPresenter;
     private EditText mEditText;
     private int mId;
@@ -39,7 +41,6 @@ public class DetailFragment extends Fragment implements DetailContract {
 
     @Override
     public void onAttach(@NonNull Context context) {
-
         super.onAttach(context);
 
         if (context instanceof FloatButtonClickListener)
@@ -72,7 +73,7 @@ public class DetailFragment extends Fragment implements DetailContract {
             mListener.buttonClick();
         });
 
-        mPresenter = new DetailPresenter(new NoteRepository());
+
         mPresenter.attachView(this);
 
         mEditText = view.findViewById(R.id.edit_text_view);

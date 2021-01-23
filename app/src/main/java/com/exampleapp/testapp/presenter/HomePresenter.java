@@ -11,7 +11,8 @@ public class HomePresenter implements BasePresenter<HomeContract> {
 
     @Inject
     public HomeContract mView;
-    public final NoteRepository mNoteRepository;
+
+    private final NoteRepository mNoteRepository;
 
     @Inject
     public HomePresenter(NoteRepository repository) {
@@ -35,7 +36,8 @@ public class HomePresenter implements BasePresenter<HomeContract> {
     public void loadNotes() {
         mNoteRepository.getAll().observe((LifecycleOwner) mView, list -> mView.getData(list));
     }
-    public void deleteNote(int id){
+
+    public void deleteNote(int id) {
         mNoteRepository.deleteNote(id);
     }
 }

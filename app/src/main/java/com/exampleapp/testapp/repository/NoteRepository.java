@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 
 import com.exampleapp.testapp.db.NotesDao;
 import com.exampleapp.testapp.entity.Note;
-import com.exampleapp.testapp.utils.AppInit;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -14,17 +13,24 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 public class NoteRepository {
 
-    private final NotesDao dao = AppInit.getDb().dao();
+    private final NotesDao mDao;
+
+    @Inject
+    public NoteRepository(NotesDao dao) {
+        mDao = dao;
+    }
 
     public LiveData<List<Note>> getAll() {
-        return dao.getData();
+        return mDao.getData();
     }
 
     public void addNote(Note item) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> dao.insert(item));
+        executor.submit(() -> mDao.insert(item));
         executor.shutdown();
 
         try {
@@ -36,7 +42,7 @@ public class NoteRepository {
 
     public void updateNote(Note note) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> dao.update(note));
+        executor.submit(() -> mDao.update(note));
         executor.shutdown();
 
         try {
@@ -47,7 +53,7 @@ public class NoteRepository {
     }
 
     public String getDataById(int id) {
-        Callable<String> task = (() -> dao.getDataById(id));
+        Callable<String> task = (() -> mDao.getDataById(id));
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<String> future = executor.submit(task);
         executor.shutdown();
@@ -63,7 +69,7 @@ public class NoteRepository {
 
     public void deleteNote(int id) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> dao.deleteNote(id));
+        executor.submit(() -> mDao.deleteNote(id));
         executor.shutdown();
 
         try {

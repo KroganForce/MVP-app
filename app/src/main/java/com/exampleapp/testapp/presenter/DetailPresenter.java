@@ -1,14 +1,19 @@
 package com.exampleapp.testapp.presenter;
 
-import com.exampleapp.testapp.repository.NoteRepository;
 import com.exampleapp.testapp.contract.DetailContract;
 import com.exampleapp.testapp.entity.Note;
+import com.exampleapp.testapp.repository.NoteRepository;
+
+import javax.inject.Inject;
 
 public class DetailPresenter implements BasePresenter<DetailContract> {
 
-    private DetailContract mView;
+    @Inject
+    public DetailContract mView;
+
     private final NoteRepository mNoteRepository;
 
+    @Inject
     public DetailPresenter(NoteRepository repository) {
         mNoteRepository = repository;
     }
