@@ -30,5 +30,3 @@ public class Note {
         return text;
     }
 }
-
-
