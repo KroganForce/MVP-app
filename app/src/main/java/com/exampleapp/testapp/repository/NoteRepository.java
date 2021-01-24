@@ -18,6 +18,7 @@ import javax.inject.Inject;
 public class NoteRepository {
 
     private final NotesDao mDao;
+    private Note mNote;
 
     @Inject
     public NoteRepository(NotesDao dao) {
@@ -28,9 +29,11 @@ public class NoteRepository {
         return mDao.getData();
     }
 
-    public void addNote(Note item) {
+    public void addNote(String text) {
+        mNote = new Note();
+        mNote.setText(text);
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> mDao.insert(item));
+        executor.submit(() -> mDao.insert(mNote));
         executor.shutdown();
 
         try {
@@ -40,9 +43,12 @@ public class NoteRepository {
         }
     }
 
-    public void updateNote(Note note) {
+    public void updateNote(int id, String text) {
+        mNote = new Note();
+        mNote.setId(id);
+        mNote.setText(text);
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> mDao.update(note));
+        executor.submit(() -> mDao.update(mNote));
         executor.shutdown();
 
         try {

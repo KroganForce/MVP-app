@@ -1,7 +1,6 @@
 package com.exampleapp.testapp.presenter;
 
 import com.exampleapp.testapp.contract.DetailContract;
-import com.exampleapp.testapp.entity.Note;
 import com.exampleapp.testapp.repository.NoteRepository;
 
 import javax.inject.Inject;
@@ -29,16 +28,11 @@ public class DetailPresenter implements BasePresenter<DetailContract> {
     }
 
     public void add() {
-        Note note = new Note();
-        note.setNote(mView.getNoteData());
-        mNoteRepository.addNote(note);
+        mNoteRepository.addNote(mView.getNoteData());
     }
 
     public void update(int id) {
-        Note note = new Note();
-        note.setId(id);
-        note.setNote(mView.getNoteData());
-        mNoteRepository.updateNote(note);
+        mNoteRepository.updateNote(id, mView.getNoteData());
     }
 
     public String getNoteData() {
