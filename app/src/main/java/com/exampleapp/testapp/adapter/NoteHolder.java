@@ -21,7 +21,7 @@ public class NoteHolder extends RecyclerView.ViewHolder {
 
     void bind(NoteAdapter.NoteClickListener listener, Note item) {
         TextView textView = mView.findViewById(R.id.note_text_view);
-        textView.setText(item.getNote());
+        textView.setText(item.getText());
         textView.setOnClickListener(view -> listener.clickOnNote(item.getId()));
 
         ImageView imageView = mView.findViewById(R.id.delete_button);

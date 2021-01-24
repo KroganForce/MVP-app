@@ -35,6 +35,6 @@ public class DiffUtility extends DiffUtil.Callback {
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         Note oldNote = mOldList.get(oldItemPosition);
         Note newNote = mNewList.get(newItemPosition);
-        return oldNote.getNote().equals(newNote.getNote());
+        return oldNote.getText().equals(newNote.getText());
     }
 }

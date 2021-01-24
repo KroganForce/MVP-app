@@ -12,22 +12,22 @@ public class Note {
     private int id;
 
     @ColumnInfo(name = "note")
-    private String note;
+    private String text;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setText(String note) {
+        this.text = note;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNote() {
-        return note;
+    public String getText() {
+        return text;
     }
 }
 
