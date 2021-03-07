@@ -47,11 +47,6 @@ public class HomeFragment extends BaseFragment implements HomeContract, NoteAdap
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -85,8 +80,8 @@ public class HomeFragment extends BaseFragment implements HomeContract, NoteAdap
     }
 
     @Override
-    public void getData(List<Note> list) {
-        mAdapter.upDateList(list);
+    public void setData(List<Note> list) {
+        mAdapter.updateList(list);
     }
 
     @Override

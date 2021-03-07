@@ -24,6 +24,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
         mNoteClickListener = listener;
     }
 
+    public interface NoteClickListener {
+        void clickOnNote(int id);
+
+        void deleteItem(int id);
+    }
+
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,16 +47,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteHolder> {
         return mList.size();
     }
 
-    public void upDateList(List<Note> newList) {
+    public void updateList(List<Note> newList) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtility(mList, newList));
         mList.clear();
         mList.addAll(newList);
         diffResult.dispatchUpdatesTo(this);
-    }
-
-    public interface NoteClickListener {
-        void clickOnNote(int id);
-
-        void deleteItem(int id);
     }
 }

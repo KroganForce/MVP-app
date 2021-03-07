@@ -34,7 +34,7 @@ public class HomePresenter implements BasePresenter<HomeContract> {
     }
 
     public void loadNotes() {
-        mNoteRepository.getAll().observe((LifecycleOwner) mView, list -> mView.getData(list));
+        mNoteRepository.getAll().observe((LifecycleOwner) mView, list -> mView.setData(list));
     }
 
     public void deleteNote(int id) {

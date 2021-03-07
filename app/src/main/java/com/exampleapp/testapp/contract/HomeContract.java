@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface HomeContract {
 
-    void getData(List<Note> list);
+    void setData(List<Note> list);
 }
